@@ -23,6 +23,7 @@ ls /doesntexist 2> error.txt # 2 means second stream (first being STDOUT)
 
 # output everything
 ls /path &> output_all.txt # ampersand means both 1st and 2nd stream
+find /etc -name hosts > stdout_and_err.txt 2>&1 # output both to the same file (same as above)
 ls /path > stdout.txt 2> stderr.txt # output both to different files
 
 # redirect input (stdin) to a file
@@ -73,3 +74,4 @@ grep [^0-z:/] /etc/passwd # output lines that have something other than any numb
 grep '/r[ou]*' /etc/passwd # output lines containing "/r" followed by zero or more occurances of  o or u, i.e. /root /run /resolve
 grep 'ee*' /etc/passwd # output all ines that have at least ONE "e" character (since * is ZERO or more)
 grep -E '/s?bin/' /etc/passwd # output all lines that have zero or one "s" in the phrase, i.e. "sbin" and "bin", using Extended RegEx (-E)
+grep -E 'sshd|root|operator' passwd # output all lines with eiter of the words

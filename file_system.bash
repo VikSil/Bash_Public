@@ -30,6 +30,9 @@ locate -b "\precisefilename"
 # see hit number of the above command
 locate -c keyword
 
+# find in a directory
+find ~ -name "*bash*" # find file names containing "bash" in home dir
+
 #-------------------------------------------
 # copy files
 cp /source_path/filename /destination_path
