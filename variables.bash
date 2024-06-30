@@ -9,6 +9,9 @@ variable2='Else'
 variable=$variable1' '$variable2
 echo $variable # will output "Something Else"
 
+variable=`pwd` # will execute pwd command when the variable's value is accessed
+read VARIABLE # will wait to read from stdin
+
 # single quotes will act like a static string literal, ignoring everything
 echo 'Value of PATH env variable is $PATH'
 # double quotes will act like a formatted string literal (commands require brackets)
@@ -17,9 +20,11 @@ echo Today is $(date)
 # backticks will act like a template literal for commands
 echo Today is `date`
 
-
 # escaping is done via backslash
 echo 'service costs \$100 and PATH is $PATH'
+
+echo "Hello $1" #placeholder for arguments passed to the script ($0 is the name of the script itself)
+echo $? # returns the exit code of the previous command
 
 # GLOBS
 # ? - any single character

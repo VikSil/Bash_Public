@@ -75,3 +75,7 @@ grep '/r[ou]*' /etc/passwd # output lines containing "/r" followed by zero or mo
 grep 'ee*' /etc/passwd # output all ines that have at least ONE "e" character (since * is ZERO or more)
 grep -E '/s?bin/' /etc/passwd # output all lines that have zero or one "s" in the phrase, i.e. "sbin" and "bin", using Extended RegEx (-E)
 grep -E 'sshd|root|operator' passwd # output all lines with eiter of the words
+
+# quiet (-q) search, that does not output the lines, only finds them
+grep -q root /etc/passwd
+echo $? # output the exit code of the previosu command (0 - found/OK (by convention), 1- not found)
