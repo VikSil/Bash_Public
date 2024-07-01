@@ -63,6 +63,17 @@ rm file1 file2
 rm -r /path/dir_to_remove
 
 #-------------------------------------------
+# check file type
+file /path/filename
+
+# check filetypes of everything in a dir
+for file in `ls /path/dirname`; do
+file /path/dirname/$file
+done
+# data isa binary/executable!
+
+
+#-------------------------------------------
 # archiving
 gzip /path/filename # compress and remove original file
 gunzip /path/filename.gz # decompress
@@ -81,7 +92,54 @@ unzip -l archive_name.zip # list (not unarchive!) files in the archive
 
 
 #-------------------------------------------
+# FILE SYSTEM HIERARCHY
+
+# https://ndg-content-dev.s3.amazonaws.com/media/images/linux-essentials-v2/LEv2_13_2.png
+
+: <<'COMMENT'
+/ 	The base of the structure, or root of the filesystem, this directory unifies all directories regardless of whether they are local partitions, removable devices or network shares
+/bin 	Essential binaries like the ls, cp, and rm commands, and be a part of the root filesystem
+/boot 	Files necessary to boot the system, such as the Linux kernel and associated configuration files
+/dev 	Files that represent hardware devices and other special files, such as the /dev/null and /dev/zero files
+/etc 	Essential host configurations files such as the /etc/hosts or /etc/passwd files
+/home 	User home directories
+/lib 	Essential libraries to support the executable files in the /bin and /sbin directories
+/lib64 	Essential libraries built for a specific architecture. For example, the /lib64 directory for 64-bit AMD/Intel x86 compatible processors
+/media 	Mount point for removable media mounted automatically
+/mnt 	Mount point for temporarily mounting filesystems manually
+/opt 	Optional third-party software installation location
+/proc 	Virtual filesystem for the kernel to report process information, as well as other information
+/root 	Home directory of the root user
+/sbin 	Essential system binaries primarily used by the root user
+/sys 	Virtual filesystem for information about hardware devices connected to the system
+/srv 	Location where site-specific services may be hosted
+/tmp 	Directory where all users are allowed to create temporary files and that is supposed to be cleared at boot time (but often is not)
+/usr 	
+
+Second hierarchy
+Non-essential files for multi-user use
+/usr/local 	
+
+Third hierarchy
+Files for software not originating from distribution
+/var 	
+
+Fourth hierarchy
+Files that change over time
+/var/cache 	Files used for caching application data
+/var/log 	Most log files
+/var/lock 	Lock files for shared resources
+/var/spool 	Spool files for printing and mail
+/var/tmp 	Temporary files to be preserved between reboots
+
+COMMENT
 
 #-------------------------------------------
+# PACKAGES / LIBRARIES
+
+dpkg -L packagename # list (-L) all dirs related to the application
+
+ls -lAh /path/dir/*.so # list libraries (shared objects) in the directory
+
 
 #-------------------------------------------

@@ -57,7 +57,7 @@ for S in $SERVERS; do
     echo "Doing something to $S"
 done
 
-for num in `seq 1 12` # sequence/range
+for num in `seq 1 12`; # sequence/range
 do
     touch test$num # make 12 numbered files with 'test' prefix in filename
 done  
