@@ -1,6 +1,12 @@
 # boot instructions
 cat /proc/cmdline
 
+# last time the system was booted
+who -b
+
+#last time the system reaced current runlevel
+who -r
+
 # memory usage by kernel
 cat /proc/meminfo
 
@@ -17,6 +23,8 @@ sysctl
 cat /proc/sys/kernel/pid_max # modify to increase number of allowed concurrent processes
 # once the number is exceeded, kernel will wrap around and use available PIDs from the bottom of the range
 
+# display info about kernel
+uname
 
 #-------------------------------------------
 # PROCESSES
@@ -53,6 +61,7 @@ r # renice (provide niceness value between -20 and 19 with higher numbers being 
 # only root can prioritise up (provide lesser or negative number), anyone can prioritise down (provide higher positive number)
 
 uptime # load averages are for last one, five, fifteen minutes as number of busy cores
+w # same as above, plus user info
 cat /proc/loadavg # uptime and number of executing processes/total processes and last executing PID
 #-------------------------------------------
 # LOGGING
