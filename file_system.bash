@@ -1,14 +1,17 @@
 # see all files/folders
 ls -lah
 ls -lah /some/directory
-# see info on current dir
-ls -ld
+# see info on [current] dir (rather than files in it!)
+ls -ld [dirname]
 # drill into tree
 ls -lR
 # sort by size in reverse
 ls -lShr
 # sort by modification time
 ls -lth --full-time
+
+# detailed stats
+stat filename
 
 # see everything in current folder
 echo *
@@ -72,6 +75,14 @@ file /path/dirname/$file
 done
 # data isa binary/executable!
 
+#-------------------------------------------
+# links (shortcuts)
+
+ln original linkname # hard link - creates a new file pointing to the same inode (index node in file table)
+ln -s original linkname # soft link - creates a link type 'file' pointing to the original object
+
+ls i /path/filename # find inode number of a file
+find / -inum 1234 # find all files linked to inode 1234 
 
 #-------------------------------------------
 # archiving
@@ -143,3 +154,44 @@ ls -lAh /path/dir/*.so # list libraries (shared objects) in the directory
 
 
 #-------------------------------------------
+# PERMISSIONS
+
+chgrp groupname file # switch group ownership of the file
+chgrp -R groupname dirname # recursively switch group ownership of all files in dir
+
+chown newuserowner:newgroupowner /path/filename # change ownership of file 
+chown newuserowner.newgroupowner /path/filename # same as above
+# alternatively, use only 
+# newuserowner
+# :newgroupowner
+# .newgroupowner
+
+: <<'FLAGS'
+ls -l permission flags
+0123456789t, e.g. -rw-r-xrwx
+
+0 - file type flag (- = binary, d = directory, l = link (shortcut), b = block, c = charfile, p = pipeline, s = socket)
+1 to 3 - user owner permissions (rwx/s/S = read, write, execute/special&execute/Special)
+4 to 6 - group owner permissions (rwx/s/S = read, write, execute/special&execute/Special)
+7 to 9 - world's permissions (rwx = read, write, execute)
+t - sticky bit write on a dir (optional)
+FLAGS
+
+: <<'CHMOD'
+chmod newpermissions /path/filename # change permissions on a file
+newpermissions in form owner-permission-operation:
+
+owner: u = user, g = group, o = others, a = all
+permission: + = add, - = remove, = = set (mentioned = allowed, unmentioned = prohibited)
+operation: r = read, w = write, x = execute, s = special&execute, S = special, t = sticky bit (for others only  )
+
+octal permissions:
+0 = --- , 1 = --x, 2 = -w-, 3 = -wx , 4 = r--, 5 = r-x, 6 = rw-, 7 = rwx, 
++4000 = s (on user) +2000 = s (on group) +1000 = t
+CHMOD
+
+chmod g+w filename # add write permissions to owner group
+chmod u-x filename # remove execute permissions from owner user
+chmod a=rw filename # set read-write permissions for all and remove execute for all
+
+chmod 764 filename # set full access for user, read-write to group, read-only for world

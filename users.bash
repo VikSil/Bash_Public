@@ -72,8 +72,10 @@ usermod [options] username # options similar to useradd, see --help
 usermod -L username # lock user
 usermod -U username # unlock user
 passwd -S username # see if the user is locked
+usermod -g switchgroupname username # change users primary group
 
 userdel -r username # recursively delete user, their home and mail
+
 
 #-------------------------------------------
 # GROUP MANAGEMENT
@@ -82,7 +84,9 @@ cat /etc/group # list all groups on the system
 grep groupname /etc/group # display group info
 getent group groupname # display group info over network
 
-id -g # current users primary group
+id -g # current user's primary group
+groups # all current user's groups
+newgrp switchgroupname # switch current session(!!) to a different primary group
 
 groupadd -g 1005 research # add a new group with group id 1005 and name "research"
 group -r sytemgroupname # add a group in the range reserved for system accounts (<1000 on Debian)
