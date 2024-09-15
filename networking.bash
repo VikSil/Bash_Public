@@ -50,6 +50,7 @@ netstat -r
 # DEVICES
 ifconfig # shows all network devices (including containerised)
 ip addr show # shows all network devices
+iwconfig # low level networking devices that can accept wi-fi
 
 ifdown eth0 # shut down ethernet (e.g. to reconfigure)
 ifup eth0 # start up ethernet
@@ -84,3 +85,24 @@ ssh username@host # send login request
 exit # logout
 # RSA keys for the known hosts should be here
 cat ~/.ssh/known_hosts
+
+#-------------------------------------------
+# WI-FI
+sudo iwlist scan | grep ESSID | sort -u # available networks
+
+# set up password configuration
+wpa_passphrase NETWORK_ESSID PASSPHRASE > wpa_supplicant.conf
+
+#connect to wi-fi
+# wpa_supplicant is the binary that does the connecting
+# wpa_supplicant.conf is the psw file
+# B = background (to get the cursor back)
+# the Dnl80211 is the driver
+sudo wpa_supplicant -c wpa_supplicant.conf -i wlan0 -B -Dnl80211 
+
+# status of the GUI network manager
+systemctl status NetworkManager
+
+sudo stop NetworkManager # kill the GUI to be able to connect from cli
+
+sudo dhclient wlan0

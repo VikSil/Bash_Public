@@ -49,7 +49,8 @@ info keyword # finds the section in the docs, press U for back, L for forward, S
 # search in a manpage
 /what_to_search_for # press n for forward, Shitf+N for backwards
 #-------------------------------------------
-
+# check what type of a console is this
+echo $0
 #-------------------------------------------
 
 #-------------------------------------------

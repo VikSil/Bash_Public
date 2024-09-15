@@ -52,3 +52,8 @@ unset variablename
 
 # adding to PATH variable
 PATH=/some/new/dir:$PATH
+
+# usually the best way to make a global variable 'stick'
+# is to add it to the terminal initialisation file
+~/.bashrc # if the default terminal is bash
+~/.zshrc # if the default terminal is z-shell

@@ -14,3 +14,9 @@ apt-cache search keyword_in_package_name
 # get more detailes info about a package
 apt-cache show package_name
 apt-cache showpkg package_name
+#-------------------------------------------
+# REPOs
+#
+# The repos that apt/apt-get cheks are listed here:
+/etc/apt/sources.list.d
+# removing a .list file will result in apt skipping the repo
