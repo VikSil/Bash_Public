@@ -17,7 +17,8 @@ lsmod
 lspci
 # devices on USB (Universal Serial Bus)
 lsusb
-
+# all storage devices
+lsblk
 
 # disk partitions
 sudo parted -l
