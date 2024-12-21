@@ -25,6 +25,7 @@ cat /proc/sys/kernel/pid_max # modify to increase number of allowed concurrent p
 
 # display info about kernel
 uname
+uname -m # kernel architecture
 
 #-------------------------------------------
 # PROCESSES
