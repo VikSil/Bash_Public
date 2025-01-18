@@ -1,5 +1,7 @@
 # processor type (x86 or x64)
 arch
+# procesor architecture type (ARM or AMD)
+dpkg --print-architecture
 # cpu details
 lscpu
 cat /proc/cpudetails
