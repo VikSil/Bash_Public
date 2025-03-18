@@ -1,5 +1,7 @@
 # Debian low level package manager
 dpkg --help
+# show all installed packageswith keyword in name
+dpkg --list | grep keyword 
 # Debian high level package managers
 apt
 apt-get
