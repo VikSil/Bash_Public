@@ -11,6 +11,11 @@ rpm
 # GUI package manager
 aptitude
 #-------------------------------------------
+# MANAGING PACKAGES
+apt purge --auto-remove packagename # uninstall
+# repositories are here - you can try removing any that are causing trouble
+# /etc/apt/sources.list.d/
+#-------------------------------------------
 # SEARCHING FOR PACKAGES
 apt-cache search keyword_in_package_name
 # get more detailes info about a package
