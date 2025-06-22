@@ -106,3 +106,8 @@ systemctl status NetworkManager
 sudo stop NetworkManager # kill the GUI to be able to connect from cli
 
 sudo dhclient wlan0
+
+# script to gather info about Wi-fi connection
+# https://github.com/UbuntuForums/wireless-info
+
+# if SSID is visible, but it won't accept the psw, try changing router 802.11 Mode (i.e. radio frequency) between n/g/b only
